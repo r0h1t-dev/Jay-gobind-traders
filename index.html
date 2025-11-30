@@ -976,11 +976,20 @@
             }
 
             .about-stats {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.8rem;
+            }
+
+            .stat-item {
+                padding: 1rem 0.5rem;
             }
 
             .stat-number {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
             }
 
             .service-card {
