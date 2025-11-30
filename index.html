@@ -857,6 +857,10 @@
         }
 
         @media (max-width: 768px) {
+            section {
+                padding: 4rem 1.5rem;
+            }
+
             .mobile-menu-btn {
                 display: block;
             }
@@ -871,10 +875,25 @@
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1.5rem;
+                text-align: center;
             }
 
             .nav-links.active {
                 display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            .hero-services {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
             }
 
             .about-content {
@@ -916,16 +935,73 @@
         }
 
         @media (max-width: 480px) {
+            section {
+                padding: 3rem 1rem;
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+                letter-spacing: 1px;
+            }
+
+            .hero .tagline {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .hero-services {
+                gap: 0.8rem;
+            }
+
+            .hero-service-badge {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header p {
+                font-size: 0.95rem;
+                padding: 0 0.5rem;
+            }
+
+            .about-text h3 {
+                font-size: 1.4rem;
+            }
+
+            .about-text p {
+                font-size: 0.95rem;
             }
 
             .about-stats {
                 grid-template-columns: 1fr;
             }
 
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .service-card {
+                border-radius: 15px;
+            }
+
+            .service-icon {
+                height: 160px;
+            }
+
+            .service-content {
+                padding: 1.5rem;
+            }
+
+            .service-content h3 {
+                font-size: 1.3rem;
+            }
+
             .gallery-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
             .gallery-item:nth-child(1) {
@@ -933,8 +1009,41 @@
             }
 
             .proprietor-photo {
-                width: 180px;
-                height: 180px;
+                width: 160px;
+                height: 160px;
+            }
+
+            .proprietor-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .contact-info h3 {
+                font-size: 1.4rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.8rem;
+            }
+
+            .footer-brand h3 {
+                font-size: 1.4rem;
+            }
+
+            .footer-content {
+                padding: 0 1rem;
+            }
+
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
             }
         }
     </style>
