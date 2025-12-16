@@ -47,36 +47,47 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
+            background: #ffffff; /* pure white */
+            backdrop-filter: none;
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 0.3rem 0;
         }
 
         .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            width: 100%;
+            margin: 0;
+            padding: 0 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            min-height: 64px; /* prevents menu cutoff */
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--warm-gold);
-            font-weight: 700;
+            display: flex;
+            align-items: center;
             text-decoration: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo img {
+            height: 160px;
+            width: auto;
+            display: block;
+            margin-top: -25px;
+            margin-bottom: -25px;
         }
 
         .nav-links {
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
-            color: var(--cream);
+            color: var(--coal-black);
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
@@ -835,7 +846,7 @@
             display: block;
             width: 25px;
             height: 2px;
-            background: var(--cream);
+            background: var(--coal-black);
             margin: 5px 0;
             transition: all 0.3s ease;
         }
@@ -871,7 +882,7 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: var(--coal-black);
+                background: #ffffff;
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1.5rem;
@@ -1061,7 +1072,9 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">Jay Gobind Traders</a>
+            <a href="#home" class="logo">
+                <img src="Untitled design.svg" alt="Jay Gobind Traders Logo">
+            </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -1239,7 +1252,7 @@
             <div class="proprietors-grid">
                 <div class="proprietor-card">
                     <div class="proprietor-photo">
-                        <img src="Rakesh.jpeg" alt="Rakesh Kumar Chaudhary" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                        <img src="rakeshmama.jpg.PNG" alt="Rakesh Kumar Chaudhary" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                     </div>
                     <h3>Rakesh Kumar Chaudhary</h3>
                     <p class="role">Proprietor</p>
@@ -1441,14 +1454,10 @@
             });
         });
 
-        // Navbar background on scroll
+        // Keep navbar white on scroll
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(26, 26, 26, 0.98)';
-            } else {
-                nav.style.background = 'rgba(26, 26, 26, 0.95)';
-            }
+            nav.style.background = '#ffffff';
         });
 
         // Elegant scroll animations
