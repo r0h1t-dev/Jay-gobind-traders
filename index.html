@@ -9,14 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --coal-black: #1a1a1a;
-            --warm-gold: #c9a227;
-            --earth-brown: #4a3728;
-            --forest-green: #2d5a27;
-            --cream: #f5f0e8;
-            --terracotta: #c05746;
-            --soft-white: #fefdfb;
-            --gradient-warm: linear-gradient(135deg, #1a1a1a 0%, #3d2b1f 50%, #1a1a1a 100%);
+            --dark-navy: #002040;
+            --blue-variant: #003050;
+            --deep-blue: #001030;
+            --accent-red: #E03050;
+            --light-grey: #E0E0E0;
+            --white: #ffffff;
+            --gradient-main: linear-gradient(135deg, #002040 0%, #003050 50%, #001030 100%);
+            --gradient-subtle: linear-gradient(180deg, #f5f5f5 0%, #E0E0E0 100%);
         }
 
         * {
@@ -31,8 +31,8 @@
 
         body {
             font-family: 'DM Sans', sans-serif;
-            background: var(--soft-white);
-            color: var(--coal-black);
+            background: var(--light-grey);
+            color: var(--dark-navy);
             line-height: 1.7;
         }
 
@@ -47,11 +47,12 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 0.3rem 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            overflow: visible;
         }
 
         .nav-container {
@@ -60,6 +61,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 80px;
+            padding: 0 2rem;
         }
 
         .logo {
@@ -67,6 +70,10 @@
             align-items: center;
             text-decoration: none;
             transition: transform 0.3s ease;
+            line-height: 0;
+            position: relative;
+            z-index: 1;
+            margin-left: -4rem;
         }
 
         .logo:hover {
@@ -74,10 +81,16 @@
         }
 
         .logo img {
-            height: 140px;
-            width: auto;
+            width: 144px;
+            height: 192px;
             display: block;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -87,7 +100,7 @@
         }
 
         .nav-links a {
-            color: var(--coal-black);
+            color: var(--dark-navy);
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
@@ -102,12 +115,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--warm-gold);
+            background: var(--accent-red);
             transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--warm-gold);
+            color: var(--accent-red);
         }
 
         .nav-links a:hover::after {
@@ -117,12 +130,88 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: var(--gradient-warm);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            z-index: 2;
+        }
+
+        .hero-background-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-background-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero-background-slide.active {
+            opacity: 1;
+        }
+
+        .hero-background-slide:nth-child(1) {
+            background-image: url('Gallery/Background.png');
+        }
+
+        .hero-background-slide:nth-child(2) {
+            background-image: url('Gallery/backgroud2.png');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero-bg-nav {
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .hero-bg-nav-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .hero-bg-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.6);
+            border-color: rgba(255, 255, 255, 0.9);
+            transform: scale(1.2);
+        }
+
+        .hero-bg-nav-btn.active {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(255, 255, 255, 1);
+            width: 14px;
+            height: 14px;
         }
 
         .hero::before {
@@ -132,10 +221,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(201, 162, 39, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(192, 87, 70, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(45, 90, 39, 0.05) 0%, transparent 70%);
+            background: transparent;
+            z-index: 1;
         }
 
         .hero-content {
@@ -236,18 +323,32 @@
 
         .hero h1 {
             font-size: clamp(3rem, 8vw, 6rem);
-            color: var(--cream);
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 1rem;
             letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.15rem;
+        }
+
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red) 0%, rgba(255, 255, 255, 0.9) 50%, var(--accent-red) 100%);
+            border-radius: 2px;
         }
 
         .hero h1 span {
-            color: var(--warm-gold);
+            color: var(--accent-red);
         }
 
         .hero .tagline {
             font-size: 1.3rem;
-            color: rgba(245, 240, 232, 0.8);
+            color: rgba(255, 255, 255, 0.85);
             margin-bottom: 2rem;
             font-weight: 400;
         }
@@ -261,20 +362,74 @@
         }
 
         .hero-service-badge {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(201, 162, 39, 0.3);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            color: var(--cream);
-            font-size: 0.95rem;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            padding: 1.25rem 1.75rem;
+            border-radius: 16px;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.3px;
+            min-width: 130px;
+        }
+
+        .hero-service-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(224, 48, 80, 0.2), rgba(0, 48, 80, 0.15));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .hero-service-badge:hover::before {
+            opacity: 1;
         }
 
         .hero-service-badge:hover {
-            background: rgba(201, 162, 39, 0.2);
-            border-color: var(--warm-gold);
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(224, 48, 80, 0.25), 0 0 0 2px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.18);
+            color: white;
+        }
+
+        .hero-service-badge .badge-icon {
+            font-size: 1.75rem;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 2;
+            line-height: 1;
+        }
+
+        .hero-service-badge span:not(.badge-icon) {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .hero-service-badge:hover .badge-icon {
+            transform: scale(1.1);
+            filter: drop-shadow(0 3px 10px rgba(255, 255, 255, 0.4));
         }
 
         .scroll-indicator {
@@ -300,7 +455,7 @@
         .scroll-indicator svg {
             width: 30px;
             height: 30px;
-            stroke: var(--warm-gold);
+            stroke: var(--accent-red);
         }
 
         /* Section Styles */
@@ -320,7 +475,7 @@
 
         .section-header h2 {
             font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--coal-black);
+            color: var(--dark-navy);
             margin-bottom: 1rem;
             position: relative;
             display: inline-block;
@@ -330,15 +485,15 @@
             content: '';
             position: absolute;
             bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
+            left: 0;
+            width: 100%;
             height: 3px;
-            background: var(--warm-gold);
+            background: linear-gradient(90deg, var(--dark-navy) 0%, var(--accent-red) 50%, var(--dark-navy) 100%);
+            border-radius: 2px;
         }
 
         .section-header p {
-            color: #666;
+            color: rgba(0, 32, 64, 0.7);
             font-size: 1.1rem;
             max-width: 600px;
             margin: 1.5rem auto 0;
@@ -346,7 +501,7 @@
 
         /* About Section */
         .about {
-            background: var(--cream);
+            background: var(--light-grey);
         }
 
         .about-content {
@@ -359,11 +514,11 @@
         .about-text h3 {
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
-            color: var(--earth-brown);
+            color: var(--dark-navy);
         }
 
         .about-text p {
-            color: #555;
+            color: rgba(0, 32, 64, 0.8);
             margin-bottom: 1.5rem;
             font-size: 1.05rem;
         }
@@ -378,21 +533,22 @@
         .stat-item {
             text-align: center;
             padding: 1.5rem;
-            background: var(--soft-white);
+            background: var(--white);
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 32, 64, 0.1);
         }
 
         .stat-number {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--warm-gold);
+            color: var(--dark-navy);
         }
 
         .stat-label {
             font-size: 0.9rem;
-            color: #666;
+            color: rgba(0, 32, 64, 0.7);
             margin-top: 0.5rem;
         }
 
@@ -428,7 +584,7 @@
 
         /* Services Section */
         .services {
-            background: var(--soft-white);
+            background: var(--white);
         }
 
         .services-grid {
@@ -438,17 +594,18 @@
         }
 
         .service-card {
-            background: var(--soft-white);
+            background: var(--white);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 32, 64, 0.1);
             transition: all 0.4s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 32, 64, 0.1);
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 20px 60px rgba(0, 32, 64, 0.2);
+            border-color: var(--accent-red);
         }
 
         .service-icon {
@@ -487,11 +644,11 @@
         .service-content h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--coal-black);
+            color: var(--dark-navy);
         }
 
         .service-content p {
-            color: #666;
+            color: rgba(0, 32, 64, 0.7);
             font-size: 1rem;
             line-height: 1.7;
         }
@@ -499,13 +656,13 @@
         .service-features {
             margin-top: 1.5rem;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            border-top: 1px solid rgba(0, 32, 64, 0.1);
         }
 
         .service-features li {
             list-style: none;
             padding: 0.5rem 0;
-            color: #555;
+            color: rgba(0, 32, 64, 0.8);
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -513,14 +670,14 @@
 
         .service-features li::before {
             content: '✓';
-            color: var(--warm-gold);
+            color: var(--accent-red);
             font-weight: bold;
         }
 
         /* Proprietors Section */
         .proprietors {
-            background: var(--gradient-warm);
-            color: var(--cream);
+            background: var(--gradient-main);
+            color: var(--white);
         }
 
         .proprietors .section-header h2 {
@@ -528,7 +685,7 @@
         }
 
         .proprietors .section-header p {
-            color: rgba(245, 240, 232, 0.7);
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .proprietors-grid {
@@ -549,8 +706,8 @@
             height: 220px;
             border-radius: 50%;
             margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, rgba(201, 162, 39, 0.3), rgba(201, 162, 39, 0.1));
-            border: 4px solid var(--warm-gold);
+            background: linear-gradient(135deg, rgba(224, 48, 80, 0.2), rgba(224, 48, 80, 0.1));
+            border: 4px solid var(--accent-red);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -561,13 +718,13 @@
 
         .proprietor-photo:hover {
             transform: scale(1.05);
-            box-shadow: 0 20px 50px rgba(201, 162, 39, 0.3);
+            box-shadow: 0 20px 50px rgba(224, 48, 80, 0.4);
         }
 
         .proprietor-photo svg {
             width: 80px;
             height: 80px;
-            stroke: var(--warm-gold);
+            stroke: var(--accent-red);
             opacity: 0.6;
         }
 
@@ -586,14 +743,171 @@
         }
 
         .proprietor-card .role {
-            color: var(--warm-gold);
+            color: var(--accent-red);
             font-weight: 500;
             font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .director-popup-btn {
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .director-popup-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: var(--accent-red);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(224, 48, 80, 0.3);
+        }
+
+        .director-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .director-popup-overlay.active {
+            display: flex;
+        }
+
+        .director-popup-content {
+            background: white;
+            padding: 0;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 85vh;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .director-popup-image {
+            flex: 0 0 300px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .director-popup-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .director-popup-text {
+            flex: 1;
+            padding: 2.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .director-popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: #666;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s ease;
+            z-index: 10001;
+            background: rgba(255, 255, 255, 0.9);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .director-popup-close:hover {
+            color: var(--accent-red);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .director-popup-text h3 {
+            color: var(--dark-navy);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .director-popup-role {
+            color: var(--accent-red);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .director-popup-message {
+            color: rgba(0, 32, 64, 0.8);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .director-popup-content {
+                flex-direction: column;
+                max-height: 90vh;
+            }
+
+            .director-popup-image {
+                flex: 0 0 250px;
+            }
+
+            .director-popup-text {
+                padding: 2rem;
+            }
         }
 
         /* Gallery Section */
         .gallery {
-            background: var(--cream);
+            background: var(--light-grey);
         }
 
         .gallery-grid {
@@ -604,15 +918,12 @@
 
         .gallery-item {
             aspect-ratio: 1;
-            background: linear-gradient(135deg, #ddd, #bbb);
             border-radius: 16px;
             overflow: hidden;
             position: relative;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: #f0f0f0;
         }
 
         .gallery-item:hover {
@@ -629,12 +940,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
 
         /* Contact Section */
         .contact {
-            background: var(--soft-white);
+            background: var(--white);
         }
 
         .contact-wrapper {
@@ -646,11 +956,11 @@
         .contact-info h3 {
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
-            color: var(--earth-brown);
+            color: var(--dark-navy);
         }
 
         .contact-info p {
-            color: #555;
+            color: rgba(0, 32, 64, 0.8);
             margin-bottom: 2rem;
             font-size: 1.05rem;
         }
@@ -670,7 +980,7 @@
         .contact-item svg {
             width: 24px;
             height: 24px;
-            stroke: var(--warm-gold);
+            stroke: var(--accent-red);
             flex-shrink: 0;
             margin-top: 0.2rem;
         }
@@ -679,20 +989,37 @@
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.3rem;
-            color: var(--coal-black);
+            color: var(--dark-navy);
         }
 
         .contact-item-content p {
-            color: #666;
+            color: rgba(0, 32, 64, 0.7);
             margin: 0;
             font-size: 0.95rem;
         }
 
+        .contact-map-container {
+            margin-top: 1.5rem;
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 32, 64, 0.1);
+        }
+
+        .contact-map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .contact-form {
-            background: var(--cream);
+            background: var(--white);
             padding: 2.5rem;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 32, 64, 0.1);
         }
 
         .form-group {
@@ -703,25 +1030,25 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
-            color: var(--coal-black);
+            color: var(--dark-navy);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 1rem;
-            border: 2px solid #e0d9cf;
+            border: 2px solid var(--light-grey);
             border-radius: 10px;
             font-family: 'DM Sans', sans-serif;
             font-size: 1rem;
             transition: border-color 0.3s ease;
-            background: var(--soft-white);
+            background: var(--white);
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--warm-gold);
+            border-color: var(--dark-navy);
         }
 
         .form-group textarea {
@@ -732,8 +1059,8 @@
         .submit-btn {
             width: 100%;
             padding: 1rem 2rem;
-            background: var(--coal-black);
-            color: var(--cream);
+            background: var(--dark-navy);
+            color: white;
             border: none;
             border-radius: 10px;
             font-family: 'DM Sans', sans-serif;
@@ -744,15 +1071,16 @@
         }
 
         .submit-btn:hover {
-            background: var(--warm-gold);
-            color: var(--coal-black);
+            background: var(--accent-red);
+            color: white;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(224, 48, 80, 0.4);
         }
 
         /* Footer */
         footer {
-            background: var(--coal-black);
-            color: var(--cream);
+            background: var(--deep-blue);
+            color: var(--white);
             padding: 4rem 2rem 2rem;
         }
 
@@ -766,12 +1094,12 @@
 
         .footer-brand h3 {
             font-size: 1.8rem;
-            color: var(--warm-gold);
+            color: var(--accent-red);
             margin-bottom: 1rem;
         }
 
         .footer-brand p {
-            color: rgba(245, 240, 232, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             font-size: 0.95rem;
             line-height: 1.7;
         }
@@ -791,22 +1119,22 @@
         }
 
         .footer-links a {
-            color: rgba(245, 240, 232, 0.7);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: var(--warm-gold);
+            color: var(--accent-red);
         }
 
         .footer-bottom {
             max-width: 1200px;
             margin: 3rem auto 0;
             padding-top: 2rem;
-            border-top: 1px solid rgba(245, 240, 232, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
-            color: rgba(245, 240, 232, 0.5);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
         }
 
@@ -823,7 +1151,7 @@
             display: block;
             width: 25px;
             height: 2px;
-            background: var(--cream);
+            background: var(--dark-navy);
             margin: 5px 0;
             transition: all 0.3s ease;
         }
@@ -853,21 +1181,18 @@
                 display: block;
             }
 
-            .logo img {
-                height: 100px;
-            }
-
             .nav-links {
                 display: none;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: var(--coal-black);
+                background: rgba(255, 255, 255, 0.98);
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1.5rem;
                 text-align: center;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             }
 
             .nav-links.active {
@@ -946,8 +1271,28 @@
             }
 
             .hero-service-badge {
-                padding: 0.6rem 1rem;
-                font-size: 0.8rem;
+                padding: 1rem 1.2rem;
+                font-size: 0.85rem;
+                min-width: 120px;
+                gap: 0.5rem;
+            }
+
+            .hero-service-badge .badge-icon {
+                font-size: 1.5rem;
+            }
+
+            .hero-bg-nav {
+                left: 1rem;
+            }
+
+            .hero-bg-nav-btn {
+                width: 10px;
+                height: 10px;
+            }
+
+            .hero-bg-nav-btn.active {
+                width: 12px;
+                height: 12px;
             }
 
             .section-header h2 {
@@ -1040,11 +1385,16 @@
             }
 
             nav {
-                padding: 0.3rem 1rem;
+                padding: 0.8rem 1rem;
             }
 
+            .logo img {
+                width: 100px;
+                height: 133px;
+            }
+            
             .logo {
-                font-size: 1.2rem;
+                margin-left: -1rem;
             }
         }
     </style>
@@ -1053,14 +1403,14 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="#home" class="logo">
+            <a href="#" class="logo">
                 <img src="Untitleddesign2.png" alt="Jay Gobind Traders Logo">
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#proprietors">Proprietors</a></li>
+                <li><a href="#proprietors">Our Team</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -1074,15 +1424,38 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <div class="hero-background-slideshow">
+            <div class="hero-background-slide active"></div>
+            <div class="hero-background-slide"></div>
+        </div>
+        <div class="hero-bg-nav">
+            <button class="hero-bg-nav-btn active" onclick="changeBackground(0)"></button>
+            <button class="hero-bg-nav-btn" onclick="changeBackground(1)"></button>
+        </div>
         <div class="hero-content">
             <h1>Jay <span>Gobind</span> Traders</h1>
             <p class="tagline">Your Trusted Partner in Coal Distribution, Fresh Vegetables & Transport Services</p>
             <div class="hero-services">
-                <span class="hero-service-badge">🪨 Coal Distribution</span>
-                <span class="hero-service-badge">🥬 Fruits and Vegetable</span>
-                <span class="hero-service-badge">🚌 Bus Service</span>
-                <span class="hero-service-badge">🧱 Brick Supplier</span>
-                <span class="hero-service-badge">🚚 Goods Transport</span>
+                <a href="#services" class="hero-service-badge">
+                    <span class="badge-icon">🪨</span>
+                    <span>Coal Distribution</span>
+                </a>
+                <a href="#services" class="hero-service-badge">
+                    <span class="badge-icon">🥬</span>
+                    <span>Fruits & Vegetable</span>
+                </a>
+                <a href="#services" class="hero-service-badge">
+                    <span class="badge-icon">🚌</span>
+                    <span>Bus Service</span>
+                </a>
+                <a href="#services" class="hero-service-badge">
+                    <span class="badge-icon">🧱</span>
+                    <span>Brick Supplier</span>
+                </a>
+                <a href="#services" class="hero-service-badge">
+                    <span class="badge-icon">🚚</span>
+                    <span>Goods Transport</span>
+                </a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -1102,8 +1475,8 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>A Legacy of Trust & Quality</h3>
-                    <p>Jay Gobind Traders is a family-owned business established in 2012 by Yugal Kishor Chaudhary and Rakesh Kumar Chaudhary with the vision of providing quality services across multiple sectors. Based in the heart of Nepal, we have grown from a small trading company to a diversified enterprise serving thousands of customers.
-                    </p>
+                    <p>Jay Gobind Traders is a family-owned business established in 2012 by Yugal Kishor Chaudhary and Rakesh Kumar Chaudhary. Starting from a small trading unit in Nepal, we have grown into a trusted supplier specializing in coal import, brick industry supply, agriculture materials, and goods transportation. Our strong presence in cross-border trade with India allows us to deliver reliable and high-quality products across Nepal.</p>
+                    <p>With a solid network and a commitment to quality, fair pricing, and timely delivery, we proudly serve brick factories throughout the Kathmandu Valley and other regions of Nepal. Over the years, our dedication to transparency, customer satisfaction, and dependable logistics has helped us build long-term relationships and establish ourselves as a reliable partner in Nepal's industrial and agricultural sectors.</p>
                   
                     <div class="about-stats">
                         <div class="stat-item">
@@ -1227,7 +1600,7 @@
     <section class="proprietors" id="proprietors">
         <div class="section-container">
             <div class="section-header">
-                <h2>Our Proprietors</h2>
+                <h2>Our Team</h2>
                 <p>Meet the visionary leaders behind Jay Gobind Traders</p>
             </div>
             <div class="proprietors-grid">
@@ -1236,18 +1609,49 @@
                         <img src="Rakesh.jpeg" alt="Rakesh Kumar Chaudhary" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                     </div>
                     <h3>Rakesh Kumar Chaudhary</h3>
-                    <p class="role">Proprietor</p>
+                    <p class="role">Director</p>
+                    <button class="director-popup-btn" onclick="openDirectorPopup('rakesh-popup')">Director's message</button>
                 </div>
                 <div class="proprietor-card">
                     <div class="proprietor-photo">
                         <img src="NewYugal.jpg" alt="Yugal Kishor Chaudhary" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 50%;">
                     </div>
                     <h3>Yugal Kishor Chaudhary</h3>
-                    <p class="role">Proprietor</p>
+                    <p class="role">Director</p>
+                    <button class="director-popup-btn" onclick="openDirectorPopup('yugal-popup')">Director's message</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Director Popup Modals -->
+    <div id="rakesh-popup" class="director-popup-overlay" onclick="closeDirectorPopup('rakesh-popup')">
+        <div class="director-popup-content" onclick="event.stopPropagation()">
+            <div class="director-popup-image">
+                <img src="Rakesh.jpeg" alt="Rakesh Kumar Chaudhary">
+            </div>
+            <div class="director-popup-text">
+                <span class="director-popup-close" onclick="closeDirectorPopup('rakesh-popup')">&times;</span>
+                <h3>Rakesh Kumar Chaudhary</h3>
+                <p class="director-popup-role">Director</p>
+                <p class="director-popup-message">Jay Gobind Traders is built on the legacy of my father, whose work in agriculture taught us the value of integrity, hard work, and service to the community. By establishing a strong supply network in Kathmandu, we earned the trust of our customers and maintained a leading position in the vegetable supply market. Over time, we expanded our operations into transport, coal import, and brick industry supply, ensuring reliable and quality-driven services across Nepal. Our focus remains clear—deliver consistently, uphold customer satisfaction, and continue growing with professionalism and commitment.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="yugal-popup" class="director-popup-overlay" onclick="closeDirectorPopup('yugal-popup')">
+        <div class="director-popup-content" onclick="event.stopPropagation()">
+            <div class="director-popup-image">
+                <img src="NewYugal.jpg" alt="Yugal Kishor Chaudhary">
+            </div>
+            <div class="director-popup-text">
+                <span class="director-popup-close" onclick="closeDirectorPopup('yugal-popup')">&times;</span>
+                <h3>Yugal Kishor Chaudhary</h3>
+                <p class="director-popup-role">Director</p>
+                <p class="director-popup-message">Over the years, Jay Gobind Traders has evolved from a small, family-driven enterprise into a diversified trading and supply company. We began by building stability in the spice market and gradually expanded into coal, brick, agriculture supply, and goods transport to meet the needs of customers across Nepal. Our emphasis on timely delivery, strong networks, and fair pricing has earned us long-standing trust, especially among brick factories and industrial clients. As we continue to diversify—including expansion into the transport sector—our focus remains on reliability, professionalism, and long-term customer partnerships.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Gallery Section -->
     <section class="gallery" id="gallery">
@@ -1258,31 +1662,31 @@
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="Gallery/coal_distribution.jpg" alt="Coal Distribution" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="Gallery/newcoal.jpg" alt="Coal Distribution">
                 </div>
                 <div class="gallery-item">
-                    <img src="Gallery/Fruit.jpg" alt="Fresh Fruits" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="Gallery/Fruit.jpg" alt="Fresh Fruits">
                 </div>
                 <div class="gallery-item">
-                    <img src="Gallery/Bus.PNG" alt="Bus Service" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="Gallery/Bus.PNG" alt="Bus Service">
                 </div>
                 <div class="gallery-item">
-                    <img src="Gallery/Vegetable.jpg" alt="Fresh Vegetables" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="Gallery/Vegetable.jpg" alt="Fresh Vegetables">
                 </div>
                 <div class="gallery-item">
-                    <img src="Gallery/Truck.jpg" alt="Goods Transport" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="Gallery/Truck.jpg" alt="Goods Transport">
                 </div>
                 <div class="gallery-item">
-                    <img src="Gallery/Fruit2.jpg" alt="Fruits" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="Gallery/brick1.jpg" alt="Brick Supply">
                 </div>
                 <div class="gallery-item">
-                    <img src="Gallery/fruit3.jpg" alt="Fruits" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="Gallery/Fruit2.jpg" alt="Fresh Fruits">
                 </div>
                 <div class="gallery-item">
-                    <img src="Gallery/vegetable3.jpg" alt="Vegetables" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="Gallery/fruit3.jpg" alt="Fresh Fruits">
                 </div>
                 <div class="gallery-item">
-                    <img src="Gallery/brick1.jpg" alt="Brick Supplier" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="Gallery/vegetable3.jpg" alt="Fresh Vegetables">
                 </div>
             </div>
         </div>
@@ -1302,16 +1706,6 @@
                     <div class="contact-details">
                         <div class="contact-item">
                             <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            <div class="contact-item-content">
-                                <h4>Location</h4>
-                                <p><a href="https://maps.app.goo.gl/7nvS2by2d2a2eYm4A" target="_blank" style="color: inherit; text-decoration: underline;">Hariwon 4, Sarlahi, Nepal</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                             </svg>
                             <div class="contact-item-content">
@@ -1327,7 +1721,7 @@
                             </svg>
                             <div class="contact-item-content">
                                 <h4>Email</h4>
-                                <p><a href="mailto:info@jaygobindtraders.com" style="color: inherit;">info@jaygobindtraders.com</a></p>
+                                <p><a href="mailto:info@jaygobindtraders.com.np" style="color: inherit;">info@jaygobindtraders.com.np</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1338,6 +1732,19 @@
                             <div class="contact-item-content">
                                 <h4>Business Hours</h4>
                                 <p>Sunday - Friday: 8:00 AM - 9:00 PM</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <div class="contact-item-content">
+                                <h4>Location</h4>
+                                <p><a href="https://maps.app.goo.gl/7nvS2by2d2a2eYm4A" target="_blank" style="color: inherit; text-decoration: underline;">Hariwon 4, Sarlahi, Nepal</a></p>
+                                <div class="contact-map-container">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.742923517747!2d85.57741064796863!3d27.082056263593284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ec813f9c1b2881%3A0x65bcb1a808569c60!2sJay%20Gobind%20Traders!5e1!3m2!1sen!2sin!4v1766380609883!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1383,6 +1790,7 @@
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=61585395127190" target="_blank">Facebook</a></li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -1418,9 +1826,9 @@
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
-                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.background = 'rgba(255, 255, 255, 0.99)';
             } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
             }
         });
 
@@ -1497,6 +1905,71 @@
         document.querySelectorAll('.hero-service-badge').forEach((el, index) => {
             el.style.opacity = '0';
             el.style.animation = `fadeInUp 0.6s ease forwards ${0.8 + (index * 0.1)}s`;
+        });
+
+        // Background slideshow functionality
+        let currentBackground = 0;
+        const backgrounds = document.querySelectorAll('.hero-background-slide');
+        const navButtons = document.querySelectorAll('.hero-bg-nav-btn');
+        let slideshowInterval;
+
+        function changeBackground(index) {
+            // Remove active class from all slides and buttons
+            backgrounds.forEach(slide => slide.classList.remove('active'));
+            navButtons.forEach(btn => btn.classList.remove('active'));
+
+            // Add active class to selected slide and button
+            if (backgrounds[index]) {
+                backgrounds[index].classList.add('active');
+            }
+            if (navButtons[index]) {
+                navButtons[index].classList.add('active');
+            }
+
+            currentBackground = index;
+            resetSlideshow();
+        }
+
+        function nextBackground() {
+            const nextIndex = (currentBackground + 1) % backgrounds.length;
+            changeBackground(nextIndex);
+        }
+
+        function resetSlideshow() {
+            clearInterval(slideshowInterval);
+            slideshowInterval = setInterval(nextBackground, 5000); // Change every 5 seconds
+        }
+
+        // Initialize slideshow
+        if (backgrounds.length > 0) {
+            resetSlideshow();
+        }
+
+        // Director popup functions
+        function openDirectorPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeDirectorPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close popup on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.director-popup-overlay.active').forEach(popup => {
+                    popup.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
         });
     </script>
 </body>
