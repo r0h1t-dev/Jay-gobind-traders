@@ -62,7 +62,7 @@ Jay Gobind/
 ├── index.html      # Main website file
 ├── README.md       # This file
 └── images/         # Create this folder for photos
-    ├── rakesh.jpg
+    ├── rakesh.PNG
     ├── yugal.jpg
     ├── coal.jpg
     ├── vegetables.jpg
