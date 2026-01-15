@@ -12,7 +12,7 @@
             --dark-navy: #002040;
             --blue-variant: #003050;
             --deep-blue: #001030;
-            --accent-red: #E03050;
+            --accent-red: #28A745;
             --light-grey: #E0E0E0;
             --white: #ffffff;
             --gradient-main: linear-gradient(135deg, #002040 0%, #003050 50%, #001030 100%);
@@ -74,6 +74,7 @@
             position: relative;
             z-index: 1;
             margin-left: -4rem;
+            margin-top: 1rem;
         }
 
         .logo:hover {
@@ -81,8 +82,8 @@
         }
 
         .logo img {
-            width: 144px;
-            height: 192px;
+            width: 160px;
+            height: 213px;
             display: block;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
             object-fit: contain;
@@ -397,7 +398,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(224, 48, 80, 0.2), rgba(0, 48, 80, 0.15));
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.2), rgba(0, 48, 80, 0.15));
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: 0;
@@ -409,7 +410,7 @@
 
         .hero-service-badge:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(224, 48, 80, 0.25), 0 0 0 2px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            box-shadow: 0 12px 40px rgba(40, 167, 69, 0.25), 0 0 0 2px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.25);
             border-color: rgba(255, 255, 255, 0.35);
             background: rgba(255, 255, 255, 0.18);
             color: white;
@@ -466,16 +467,6 @@
         /* Section Styles */
         section {
             padding: 6rem 2rem;
-        }
-
-        /* Improved scroll rhythm for anchor jumps on mobile and desktop */
-        section > .section-container {
-            scroll-margin-top: 90px;
-        }
-
-        /* Subtle visual section separation */
-        section + section {
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
         }
 
         .section-container {
@@ -721,7 +712,7 @@
             height: 220px;
             border-radius: 50%;
             margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, rgba(224, 48, 80, 0.2), rgba(224, 48, 80, 0.1));
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.2), rgba(40, 167, 69, 0.1));
             border: 4px solid var(--accent-red);
             display: flex;
             align-items: center;
@@ -733,7 +724,7 @@
 
         .proprietor-photo:hover {
             transform: scale(1.05);
-            box-shadow: 0 20px 50px rgba(224, 48, 80, 0.4);
+            box-shadow: 0 20px 50px rgba(40, 167, 69, 0.4);
         }
 
         .proprietor-photo svg {
@@ -783,7 +774,7 @@
             border-color: var(--accent-red);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(224, 48, 80, 0.3);
+            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.3);
         }
 
         .director-popup-overlay {
@@ -867,9 +858,8 @@
 
         .director-popup-text h3 {
             color: var(--dark-navy);
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             margin-bottom: 0.5rem;
-            white-space: nowrap;
         }
 
         .director-popup-role {
@@ -907,76 +897,17 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                -webkit-font-smoothing: antialiased;
-                text-rendering: optimizeLegibility;
-            }
-            p {
-                max-width: 38ch;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .section-header h2 {
-                letter-spacing: 0.3px;
-            }
-            .about-text h3,
-            .service-content h3,
-            .contact-info h3 {
-                letter-spacing: 0.2px;
-            }
-            a,
-            button {
-                min-height: 44px;
-            }
-            .hero-service-badge {
-                line-height: 1.4;
-            }
             .director-popup-content {
                 flex-direction: column;
-                height: 90vh;
+                max-height: 90vh;
             }
 
             .director-popup-image {
-                height: 45vh;
-                flex: none;
-            }
-
-            .director-popup-image img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center top;
+                flex: 0 0 250px;
             }
 
             .director-popup-text {
-                flex: 1;
-                overflow-y: auto;
                 padding: 2rem;
-            }
-
-            .nav-links {
-                position: absolute;
-                top: 64px; /* drop below header */
-                right: 0;
-                left: auto;
-                width: fit-content;
-                min-width: 200px;
-                max-width: 260px;
-                background: rgba(255, 255, 255, 0.98);
-                flex-direction: column;
-                padding: 1.25rem 1.5rem;
-                gap: 1.25rem;
-                text-align: left;
-                box-shadow: -4px 8px 20px rgba(0, 0, 0, 0.15);
-                transform: translateX(110%);
-                transition: transform 0.3s ease;
-                z-index: 9999;
-                display: flex;
-                border-bottom-left-radius: 16px;
-            }
-
-            .nav-links.active {
-                transform: translateX(0);
             }
         }
 
@@ -1149,7 +1080,7 @@
             background: var(--accent-red);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(224, 48, 80, 0.4);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
         }
 
         /* Footer */
@@ -1249,56 +1180,56 @@
 
         @media (max-width: 768px) {
             section {
-                padding: 3rem 1.25rem;
+                padding: 4rem 1.5rem;
             }
 
             .hero {
-                min-height: 80vh;
-                padding-top: 70px;
-            }
-
-            .section-header {
-                margin-bottom: 2rem;
-            }
-
-            .section-header h2 {
-                margin-bottom: 0.6rem;
-            }
-
-            .hero-services {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.75rem;
-                margin-top: 1.5rem;
-            }
-
-            .director-popup-text {
-                padding: 1.5rem;
+                padding-top: 60px;
             }
 
             nav {
-                padding: 0.5rem 1rem;
-                padding-top: 0.25rem;
-                padding-bottom: 0.25rem;
-            }
-
-            /* Fix logo alignment and size for mobile */
-            .logo {
-                margin-left: 0;
+                padding: 0.3rem 1rem;
+                overflow: visible;
             }
 
             .nav-container {
-                padding-left: 0.5rem;
-                height: 64px;
+                overflow: visible;
+                align-items: flex-start;
+                height: 60px;
+                padding: 0 1rem;
+            }
+
+            .logo {
+                margin-left: -2.5rem;
+                margin-top: -2.5rem;
+                align-self: flex-start;
             }
 
             .logo img {
-                width: 110px;
-                height: auto;
+                width: 120px;
+                height: 160px;
             }
 
             .mobile-menu-btn {
                 display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                text-align: center;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
             }
 
             .hero h1 {
@@ -1307,6 +1238,12 @@
 
             .hero .tagline {
                 font-size: 1.1rem;
+            }
+
+            .hero-services {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
             }
 
             .about-content {
@@ -1345,42 +1282,15 @@
                 gap: 2rem;
                 text-align: center;
             }
-
-            .footer-links {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem;
-                text-align: left;
-            }
-
-            .footer-links h4 {
-                text-align: left;
-            }
         }
 
         @media (max-width: 480px) {
-            .section-header p {
-                max-width: 34ch;
-            }
-            .director-popup-message {
-                font-size: 0.95rem;
-                line-height: 1.65;
-            }
             section {
-                padding: 2.5rem 1rem;
+                padding: 3rem 1rem;
             }
 
             .hero {
-                min-height: 70vh;
-                padding-top: 70px;
-            }
-
-            body {
-                font-size: 0.95rem;
-            }
-
-            p {
-                line-height: 1.6;
+                padding-top: 55px;
             }
 
             .hero h1 {
@@ -1420,6 +1330,10 @@
             .hero-bg-nav-btn.active {
                 width: 12px;
                 height: 12px;
+            }
+
+            #yugal-popup .director-popup-image {
+                flex: 0 0 180px;
             }
 
             .section-header h2 {
@@ -1465,7 +1379,7 @@
             }
 
             .service-content {
-                padding: 1.25rem;
+                padding: 1.5rem;
             }
 
             .service-content h3 {
@@ -1473,12 +1387,12 @@
             }
 
             .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
                 gap: 1rem;
             }
 
-            .gallery-item {
-                border-radius: 12px;
+            .gallery-item:nth-child(1) {
+                grid-column: span 1;
             }
 
             .proprietor-photo {
@@ -1512,17 +1426,26 @@
             }
 
             nav {
-                padding: 0.4rem 0.8rem;
+                padding: 0.3rem 0.8rem;
+                overflow: visible;
             }
 
-            /* Replace logo img rule for smaller mobile breakpoint */
-            .logo img {
-                width: 100px;
-                height: auto;
+            .nav-container {
+                overflow: visible;
+                align-items: flex-start;
+                height: 55px;
+                padding: 0 0.8rem;
             }
-            
+
             .logo {
-                margin-left: -0.5rem;
+                margin-left: -2rem;
+                margin-top: -2.5rem;
+                align-self: flex-start;
+            }
+
+            .logo img {
+                width: 110px;
+                height: 147px;
             }
         }
     </style>
@@ -1532,7 +1455,7 @@
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">
-                <img src="Untitleddesign2.png" alt="Jay Gobind Traders Logo">
+                <img src="newlogo.png" alt="Jay Gobind Traders Logo">
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
@@ -1770,7 +1693,7 @@
     <div id="yugal-popup" class="director-popup-overlay" onclick="closeDirectorPopup('yugal-popup')">
         <div class="director-popup-content" onclick="event.stopPropagation()">
             <div class="director-popup-image">
-                <img src="yugalnew.png" alt="Yugal Kishor Chaudhary">
+                <img src="NewYugal.jpg" alt="Yugal Kishor Chaudhary">
             </div>
             <div class="director-popup-text">
                 <span class="director-popup-close" onclick="closeDirectorPopup('yugal-popup')">&times;</span>
